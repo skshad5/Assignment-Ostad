@@ -1,0 +1,134 @@
+
+
+
+
+
+
+<!-- // 9.JS DOM Working with Form Input:
+
+// Implement a webpage with a form that has the following fields:
+
+// a. Name (text input)
+
+// b. Email (email input)
+
+// c. Password (password input)
+
+// d. Confirm Password (password input)
+
+// e. Submit (button)
+
+// Implement JavaScript validation for the form fields:
+
+// f. Name should not be empty and should contain only letters.
+
+// g. Email should be a valid email address.
+
+// h. Password should have a minimum length of 8 characters and contain at least one uppercase letter, 
+//one lowercase letter, and one digit.
+
+
+// i. Confirm Password should match the Password field.
+
+
+// j. Display appropriate error messages for invalid fields. -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirm-password');
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+
+      // Reset previous error messages
+      const errorMessages = document.querySelectorAll('.error');
+      errorMessages.forEach(function (errorMessage) {
+        errorMessage.textContent = '';
+      });
+
+      let isValid = true;
+
+      // Name validation
+      if (name === '') {
+        document.getElementById('name-error').textContent = 'Name is required.';
+        isValid = false;
+      } else if (!/^[A-Za-z]+$/.test(name)) {
+        document.getElementById('name-error').textContent = 'Name should only contain letters.';
+        isValid = false;
+      }
+
+      // Email validation
+      if (email === '') {
+        document.getElementById('email-error').textContent = 'Email is required.';
+        isValid = false;
+      } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+        document.getElementById('email-error').textContent = 'Invalid email address.';
+        isValid = false;
+      }
+
+      // Password validation
+      if (password === '') {
+        document.getElementById('password-error').textContent = 'Password is required.';
+        isValid = false;
+      } else if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password)) {
+        document.getElementById('password-error').textContent = 'Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.';
+        isValid = false;
+      }
+
+      // Confirm Password validation
+      if (confirmPassword === '') {
+        document.getElementById('confirm-password-error').textContent = 'Confirm Password is required.';
+        isValid = false;
+      } else if (confirmPassword !== password) {
+        document.getElementById('confirm-password-error').textContent = 'Confirm Password does not match the Password.';
+        isValid = false;
+      }
+
+      // Return the validation result
+      return isValid;
+    }
+  </script>
+</head>
+<body>
+  <h1>Form Validation</h1>
+  <form onsubmit="return validateForm()">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <span id="name-error" class="error"></span>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <span id="email-error" class="error"></span>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <span id="password-error" class="error"></span>
+    </div>
+    <div>
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
+      <span id="confirm-password-error" class="error"></span>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

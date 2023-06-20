@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Page</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the image element
+      const image = document.getElementById('my-image');
+      
+      // Function to handle click event
+      function handleMouseClick(event) {
+        const x = event.clientX;
+        const y = event.clientY;
+        alert(`Clicked at coordinates (x, y): ${x}, ${y}`);
+      }
+      
+      // Function to handle keydown event
+      function handleKeyDown(event) {
+        const keyCode = event.keyCode;
+        alert(`Key code pressed: ${keyCode}`);
+      }
+      
+      // Function to handle mouseover event on the image
+      function handleMouseOver() {
+        image.src = 'image/ffff.jpg'; // Replace with the path to your new image
+      }
+      
+      // Attach event listeners
+      document.addEventListener('click', handleMouseClick);
+      document.addEventListener('keydown', handleKeyDown);
+      image.addEventListener('mouseover', handleMouseOver);
+    });
+  </script>
+</head>
+<body>
+  <h1>Interactive Page</h1>
+  <p>Click anywhere on the page.</p>
+  <p>Press any key on the keyboard.</p>
+  <img id="my-image" src="image/ffff.jpg" alt="Image" width="200" height="200">
+</body>
+</html>

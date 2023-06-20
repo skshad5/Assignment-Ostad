@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AJAX POST Request</title>
+  <script>
+    function sendPOSTRequest() {
+      const url = 'https://api.example.com/submit';
+      const data = { name: 'John Doe', email: 'johndoe@example.com' };
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Request failed');
+          }
+          return response.json();
+        })
+        .then(responseData => {
+          // Process the response data
+          console.log(responseData);
+        })
+        .catch(error => {
+          // Handle any errors that occurred during the request
+          console.error(error);
+        });
+    }
+  </script>
+</head>
+<body>
+  <h1>AJAX POST Request</h1>
+  <button onclick="sendPOSTRequest()">Send POST Request</button>
+</body>
+</html>
